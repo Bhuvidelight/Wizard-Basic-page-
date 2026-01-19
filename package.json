@@ -1,0 +1,42 @@
+{
+  "name": "JobApplicationTracker",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xsenv": "^6.0.0",
+    "@sap/xssec": "^4.12.1",
+    "express": "^4",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0",
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-jobapplications": "cds watch --open jobapplications/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy JobApplicationTracker --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "private": true,
+  "cds": {
+    "required": {
+      "db": "hana",
+      "auth": "dummy"
+    },
+    "odata": {
+    "batch": {
+      "limit": "20mb"
+    }
+   }
+  },
+  "workspaces": [
+    "app/*"
+  ]
+}

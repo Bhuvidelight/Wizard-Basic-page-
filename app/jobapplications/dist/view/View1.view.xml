@@ -1,0 +1,302 @@
+<mvc:View
+    controllerName="jobapplications.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified">
+
+    <Page id="page" title="Job Application Tracker">
+
+        <content>
+            <Wizard
+                id="jobWizard"
+                renderMode="Page"
+                showNextButton="false"
+                complete="onWizardComplete"
+                >
+
+
+                <!-- STEP 1: COMPANY -->
+                <WizardStep
+                    id="stepCompany"
+                    title="Company Details"
+                    validated="false">
+                    
+
+                    <Panel id="_IDGenPanel4" headerText="Basic Information" class="sapUiResponsiveMargin sapUiMediumPadding" expandable="false">
+
+                    <form:SimpleForm
+                        id="_IDGenSimpleForm"
+                        layout="ResponsiveGridLayout">
+
+                        
+                        <Label id="_IDGenLabel" text="Company ID"/>
+                        <Input id="_IDGenInput"
+                            value="{local>/Company/CompanyID}"
+                             width="15rem"
+                            editable="false"/>
+
+                        <Label id="_IDGenLabel1" text="Company Name"/>
+                        <Input id="_IDGenInput1"
+                         placeholder="e.g. SAP Labs India"
+                            value="{local>/Company/CompanyName}"
+                            width="40%"
+                            liveChange="onCompanyChange"/>
+
+                         <Button id="_IDGenButton" text="Next" type="Emphasized" visible="{local>/ui/companyNextVisible}" width="20%" press="onNextFromCompany"/>
+
+
+                    </form:SimpleForm>
+                    </Panel>
+                </WizardStep>
+
+                <!-- STEP 2: JOB -->
+                <WizardStep
+                    id="stepJob"
+                    title="Job Details"
+                    validated="false">
+
+                     
+
+                    <Panel id="_IDGenPanel7" headerText="Basic Information" class="sapUiResponsiveMargin sapUiMediumPadding" expandable="false">
+
+
+                    <form:SimpleForm
+                        id="_IDGenSimpleForm1"
+                        layout="ResponsiveGridLayout">
+
+                        <Label id="_IDGenLabel2" text="Job ID"/>
+                        <Input id="_IDGenInput2"
+                            value="{local>/Job/JobID}"
+                            width="15rem"
+                            editable="false"/>
+
+                        <Label id="_IDGenLabel3" text="Role"/>
+                        <Input id="_IDGenInput3"
+                         placeholder="e.g. Frontend Developer"
+                            value="{local>/Job/Role}"
+                            width="40%"
+                            liveChange="onJobChange"/>
+
+                        <Label id="_IDGenLabel4" text="Location"/>
+                        <Input id="_IDGenInput4"
+                         placeholder="e.g. Bengaluru, India"
+                            value="{local>/Job/Location}"
+                            width="40%"
+                            liveChange="onJobChange"/>
+
+                        <Button id="_IDGenButton1" text="Next" type="Emphasized" visible="{local>/ui/jobNextVisible}" width="20%" press="onNextFromJob"/>
+
+
+                    </form:SimpleForm>
+                    </Panel>
+                </WizardStep>
+
+                <!-- STEP 3: APPLICATION -->
+                <WizardStep
+                    id="stepApplication"
+                    title="Application Details"
+                    validated="false">
+
+                   
+                          
+                          <Panel id="_IDGenPanel6" headerText="Basic Information" class="sapUiResponsiveMargin sapUiMediumPadding" expandable="false">
+
+                    <form:SimpleForm
+                        id="_IDGenSimpleForm2"
+                        layout="ResponsiveGridLayout">
+
+
+                        <Label id="_IDGenLabel5" text="Status"/>
+                        <Select id="_IDGenSelect"
+                            selectedKey="{local>/Application/Status}"
+                            width="40%">
+
+                            <items>
+                                <core:Item id="_IDGenItem" key="APPLIED" text="Applied"/>
+                                <core:Item id="_IDGenItem1" key="INTERVIEW" text="Interview"/>
+                                <core:Item id="_IDGenItem2" key="SELECTED" text="Selected"/>
+                                <core:Item id="_IDGenItem3" key="REJECTED" text="Rejected"/>
+                            </items>
+                        </Select>
+
+                        <Label id="_IDGenLabel6" text="Applied Date"/>
+                        <DatePicker id="_IDGenDatePicker"
+                         placeholder="Select the date"
+                            value="{local>/Application/AppliedDate}"
+                            width="40%"
+                            liveChange="onApplicationChange"/>
+
+                        <Label id="_IDGenLabel7" text="Resume"/>
+                        <Panel id="_IDGenPanel8" headerText="Attachments" class="sapUiSmallMarginTop">
+    <u:FileUploader id="_IDGenFileUploader"
+        width="100%"
+        multiple="true"
+        buttonText="Upload Resume"
+        icon="sap-icon://upload"
+        change="onFileChange"/>
+</Panel>
+
+                        <Button id="_IDGenButton2" text="Next" type="Emphasized" visible="{local>/ui/applicationNextVisible}" width="20%" press="onNextFromApplication"/>
+
+
+                    </form:SimpleForm>
+
+                    </Panel>
+                </WizardStep>
+
+
+    <!-- STEP 4: REVIEW & SUBMIT -->
+<WizardStep
+    id="stepConfirmation"
+    title="Review &amp; Submit"
+    validated="false">
+    
+
+    <VBox id="_IDGenVBox1" class="sapUiContentPadding sapUiMediumMarginTop">
+
+        <!-- PAGE INTRO -->
+        <VBox id="_IDGenVBox2" class="sapUiSmallMarginBottom">
+            <Title id="_IDGenTitle" text="Review your application" level="H2"/>
+            <Text id="_IDGenText"
+                text="Please verify all details before submitting."
+                class="sapUiContentLabelColor"/>
+        </VBox>
+
+        <!-- COMPANY & JOB OVERVIEW -->
+        <Panel id="_IDGenPanel"
+            class="sapUiResponsiveMargin sapUiMediumPadding sapUiCard"
+            expandable="false">
+
+           <headerToolbar>
+    <Toolbar id="_IDGenToolbar3">
+        <Title id="_IDGenTitle1" text="Company &amp; Job Overview"/>
+        <ToolbarSpacer id="_IDGenToolbarSpacer"/>
+        <core:Icon id="_IDGenIcon" src="sap-icon://building"/>
+    </Toolbar>
+</headerToolbar>
+
+
+            <form:SimpleForm id="_IDGenSimpleForm3"
+                layout="ResponsiveGridLayout"
+                editable="false">
+
+                <Label id="_IDGenLabel8" text="Company Name"/>
+                <ObjectIdentifier id="_IDGenObjectIdentifier"
+                    title="{local>/Company/CompanyName}"/>
+
+                <Label id="_IDGenLabel9" text="Company ID"/>
+                <Text id="_IDGenText1" text="{local>/Company/CompanyID}"/>
+
+                <Label id="_IDGenLabel10" text="Job Role"/>
+                <ObjectIdentifier id="_IDGenObjectIdentifier1"
+                    title="{local>/Job/Role}"/>
+
+                <Label id="_IDGenLabel11" text="Location"/>
+                <Text id="_IDGenText2" text="{local>/Job/Location}"/>
+
+            </form:SimpleForm>
+        </Panel>
+
+        <!-- APPLICATION DETAILS -->
+        <Panel id="_IDGenPanel1"
+            class="sapUiResponsiveMargin sapUiMediumPadding sapUiCard sapUiSmallMarginTop"
+            expandable="false">
+
+            <headerToolbar>
+    <Toolbar id="_IDGenToolbar">
+        <Title id="_IDGenTitle2" text="Application Details"/>
+        <ToolbarSpacer id="_IDGenToolbarSpacer3"/>
+        <core:Icon id="_IDGenIcon1" src="sap-icon://document-text"/>
+    </Toolbar>
+</headerToolbar>
+
+
+            <HBox id="_IDGenHBox"
+                justifyContent="SpaceBetween"
+                alignItems="Center"
+                class="sapUiSmallMargin">
+
+                <ObjectStatus id="_IDGenObjectStatus"
+                    title="Status"
+                    text="{local>/Application/Status}"
+                    icon="sap-icon://sys-enter-2"
+                    state="Success"/>
+
+                <ObjectAttribute id="_IDGenObjectAttribute"
+                    title="Applied Date"
+                    text="{local>/Application/AppliedDate}"/>
+
+            </HBox>
+        </Panel>
+
+        <!-- ATTACHMENTS -->
+        <Panel id="_IDGenPanel2"
+            class="sapUiResponsiveMargin sapUiMediumPadding sapUiCard sapUiSmallMarginTop"
+            expandable="false">
+
+            <headerToolbar>
+    <Toolbar id="_IDGenToolbar1">
+        <Title id="_IDGenTitle3" text="Uploaded Resume(s)"/>
+        <ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+        <core:Icon id="_IDGenIcon2" src="sap-icon://attachment"/>
+    </Toolbar>
+</headerToolbar>
+
+            <List id="_IDGenList"
+                items="{local>/Attachments}"
+                noDataText="No resume uploaded">
+
+                <StandardListItem id="_IDGenStandardListItem"
+                    title="{local>fileName}"
+                    icon="sap-icon://document-text"
+                    type="Active"
+                    press="onPreviewAttachment"/>
+            </List>
+        </Panel>
+
+        <!-- INFO MESSAGE -->
+        <MessageStrip id="_IDGenMessageStrip"
+            text="Once submitted, the application cannot be edited."
+            type="Information"
+            showIcon="true"
+            class="sapUiMediumMarginTop"/>
+
+        <!-- ACTION FOOTER -->
+        <HBox id="_IDGenHBox1"
+            justifyContent="SpaceBetween"
+            alignItems="Center"
+            class="sapUiMediumMarginTop">
+
+            <Text id="_IDGenText3"
+                text="You can still save this application as a draft."
+                class="sapUiContentLabelColor"/>
+
+            <HBox id="_IDGenHBox2">
+                <Button
+                    id="saveDraftBtn"
+                    text="Save as Draft"
+                    icon="sap-icon://save"
+                    type="Transparent"
+                    press="onSaveDraft"/>
+
+                <Button
+                    id="submitBtn"
+                    text="Submit Application"
+                    icon="sap-icon://accept"
+                    type="Emphasized"
+                    class="sapUiSmallMarginBegin"
+                    press="onSubmit"/>
+            </HBox>
+        </HBox>
+
+    </VBox>
+</WizardStep>
+
+            </Wizard>
+        </content>
+        
+
+    </Page>
+</mvc:View>
