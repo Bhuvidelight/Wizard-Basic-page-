@@ -1,0 +1,90 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+
+    <VBox class="sapUiSmallMargin" core:require="{ handler: 'project1/ext/fragment/AuditHistory'}">
+        
+
+        <l:Grid defaultSpan="L4 M6 S12" vSpacing="1" hSpacing="2">
+
+            <!-- Customer ID -->
+            <VBox>
+                <Label text="Customer ID:"/>
+                <HBox alignItems="Center">
+                    <Text text="{customerId}"/>
+                </HBox>
+            </VBox>
+
+            <!-- Email -->
+            <VBox>
+                <Label text="Email:"/>
+                <HBox alignItems="Center">
+                    <Text text="{email}"/>
+                    <Button
+                        icon="sap-icon://message-information"
+                        type="Transparent"
+                        tooltip="View Email History"
+                        press="handler.onShowHistory">
+                        <customData>
+                            <core:CustomData key="field" value="email" writeToDom="false"/>
+                        </customData>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Address -->
+            <VBox>
+                <Label text="Address:"/>
+                <HBox alignItems="Center">
+                    <Text text="{address}"/>
+                    <Button
+                        icon="sap-icon://message-information"
+                        type="Transparent"
+                        tooltip="View Address History"
+                        press="handler.onShowHistory">
+                        <customData>
+                            <core:CustomData key="field" value="address" writeToDom="false"/>
+                        </customData>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Customer Name -->
+            <VBox>
+                <Label text="Customer Name:"/>
+                <HBox alignItems="Center">
+                    <Text text="{customerName}"/>
+                    <Button
+                        icon="sap-icon://message-information"
+                        type="Transparent"
+                        tooltip="View Name History"
+                        press="handler.onShowHistory">
+                        <customData>
+                            <core:CustomData key="field" value="customerName" writeToDom="false"/>
+                        </customData>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Phone Number -->
+            <VBox>
+                <Label text="Phone Number:"/>
+                <HBox alignItems="Center">
+                    <Text text="{phoneNumber}"/>
+                    <Button
+                        icon="sap-icon://message-information"
+                        type="Transparent"
+                        tooltip="View Phone History"
+                        press="handler.onShowHistory">
+                        <customData>
+                            <core:CustomData key="field" value="phoneNumber" writeToDom="false"/>
+                        </customData>
+                    </Button>
+                </HBox>
+            </VBox>
+
+        </l:Grid>
+    </VBox>
+
+</core:FragmentDefinition>

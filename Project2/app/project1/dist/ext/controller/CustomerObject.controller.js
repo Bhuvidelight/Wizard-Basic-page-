@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(e){"use strict";return e.extend("project1.ext.controller.CustomerObject",{override:{onInit:function(){let e=sap.ui.core.Element.getElementById("project1::CustomerObjectPage--fe::CustomAction::history");e.setIcon("sap-icon://work-history");if(e){e.addStyleClass("historyBtn")}}}})});
+//# sourceMappingURL=CustomerObject.controller.js.map

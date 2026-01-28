@@ -1,0 +1,200 @@
+{
+	"_version": "1.76.0",
+	"sap.app": {
+		"id": "project1",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:lrop",
+			"version": "1.20.0",
+			"toolsId": "045283a3-7bf7-4bb0-a830-5006fd4bea2b"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/odata/v4/myservice/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"semi1-Display": {
+					"semanticObject": "semi1",
+					"action": "Display",
+					"title": "{{semi1-Display.flpTitle}}",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					}
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.143.2",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "project1.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties",
+				"settings": {
+					"supportedLocales": [
+						""
+					]
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {},
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "CustomerList",
+					"target": "CustomerList"
+				},
+				{
+					"pattern": "Customer({key}):?query:",
+					"name": "CustomerObjectPage",
+					"target": "CustomerObjectPage"
+				}
+			],
+			"targets": {
+				"CustomerList": {
+					"type": "Component",
+					"id": "CustomerList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Customer",
+							"variantManagement": "Page",
+							"navigation": {
+								"Customer": {
+									"detail": {
+										"route": "CustomerObjectPage"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable"
+									}
+								}
+							}
+						}
+					}
+				},
+				"CustomerObjectPage": {
+					"type": "Component",
+					"id": "CustomerObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"editableHeaderContent": false,
+							"contextPath": "/Customer",
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.FieldGroup#GeneratedGroup": {
+									"actions": {
+										"history": {
+											"press": "project1.ext.controller.History.onHistoryClick",
+											"visible": true,
+											"enabled": true,
+											"position": {
+												"placement": "Before"
+											},
+											"text": "History"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ObjectPage.ObjectPageController#project1::CustomerObjectPage": {
+						"controllerName": "project1.ext.controller.CustomerObject"
+					}
+				}
+			}
+		},
+		"flexBundle": false
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "transactional"
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "app1"
+	}
+}

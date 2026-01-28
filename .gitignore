@@ -34,4 +34,5 @@ mta_archives/
 @cds-models
 
 # auto generated wildcard
-db/.env
+db/.envnode_modules/
+Project2/node_modules/

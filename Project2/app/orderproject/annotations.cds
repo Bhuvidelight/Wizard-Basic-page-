@@ -1,0 +1,1 @@
+using basicService as service from '../../srv/service';

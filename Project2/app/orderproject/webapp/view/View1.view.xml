@@ -1,0 +1,346 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+      xmlns:form="sap.ui.layout.form"
+    controllerName="orderproject.controller.View1"
+>
+    <Wizard
+        id="customerWizard"
+        showNextButton="false"
+    >
+        <!-- STEP 1: CUSTOMER -->
+        <WizardStep
+            id="stepCustomer"
+            title="Customer"
+        >
+            <VBox class="sapUiSmallMargin">
+                <HBox justifyContent="End">
+                    <Button
+                        text="Create Customer"
+                        icon="sap-icon://add-employee"
+                        press="onCreateCustomerPress"
+                    />
+                </HBox>
+
+                <Table
+                    id="customerTable"
+                    mode="SingleSelectLeft"
+                    items="{/Customer}"
+                    selectionChange="onCustomerTableSelect"
+                    itemPress="onCustomerItemPress"
+                >
+                    <columns>
+                        <Column>
+                            <Text text="Customer ID" />
+                        </Column>
+                        <Column>
+                            <Text text="Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Email" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem type="Active">
+                            <cells>
+                                <Text text="{customerId}" />
+                                <Text text="{customerName}" />
+                                <Text text="{email}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <Button
+                    class="sapUiMediumMarginTop"
+                    text="Proceed to Order"
+                    type="Emphasized"
+                    visible="{wizard>/showOrderButton}"
+                    press="onProceedToOrder"
+                />
+            </VBox>
+        </WizardStep>
+
+     <WizardStep
+    id="stepOrder"
+    title="Order">
+
+    <VBox class="sapUiSmallMargin">
+        <form:SimpleForm
+            editable="true"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="4"
+            labelSpanS="12"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="1">
+
+            <!-- Customer ID (Read-only) -->
+            <Label text="Customer ID" />
+            <Input
+                value="{wizard>/selectedCustomerId}"
+                editable="false"
+                width="250px" />
+
+            <!-- Order ID (Auto-generated, Read-only) -->
+            <Label text="Order ID" />
+            <Input
+                value="{wizard>/order/orderId}"
+                editable="false"
+                width="250px" />
+
+            <!-- Order Date -->
+            <Label text="Order Date" />
+            <DateTimePicker
+                value="{wizard>/order/orderDate}"
+                width="250px"
+                change="onOrderFieldChange" />
+
+            <!-- Order Amount -->
+            <Label text="Order Amount" />
+            <Input
+                type="Number"
+                value="{wizard>/order/orderAmount}"
+                width="250px"
+                liveChange="onOrderFieldChange" />
+
+            <!-- Status (Default: Pending, Read-only) -->
+            <Label text="Status" />
+            <Input
+                value="{wizard>/order/status}"
+                editable="true"
+                width="250px" />
+
+        </form:SimpleForm>
+
+        <!-- Proceed Button -->
+        <Button
+            class="sapUiMediumMarginTop"
+            text="Proceed to Payment"
+            type="Emphasized"
+            visible="{wizard>/showPaymentButton}"
+            press="onProceedToPayment" />
+    </VBox>
+</WizardStep>
+
+
+        <!-- STEP 3: PAYMENT -->
+<WizardStep
+    id="stepPayment"
+    title="Payment">
+
+    <VBox class="sapUiSmallMargin">
+
+        <form:SimpleForm
+            editable="true"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="4"
+            labelSpanS="12"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="1">
+
+            <!-- Order ID (Read-only) -->
+            <Label text="Order ID" />
+            <Input
+                value="{wizard>/order/orderId}"
+                editable="false"
+                width="250px" />
+
+            <!-- Payment ID (Auto-generated, Read-only) -->
+            <Label text="Payment ID" />
+            <Input
+                value="{wizard>/payment/paymentId}"
+                editable="false"
+                width="250px" />
+
+            <!-- Payment Date -->
+            <Label text="Payment Date" />
+            <DateTimePicker
+                value="{wizard>/payment/paymentDate}"
+                width="250px"
+                change="onPaymentFieldChange" />
+
+            <!-- Payment Amount -->
+            <Label text="Payment Amount" />
+            <Input
+                type="Number"
+                editable="false"
+                value="{wizard>/payment/amount}"
+                width="250px"
+                liveChange="onPaymentFieldChange" />
+
+        </form:SimpleForm>
+
+        <!-- Submit Button -->
+        <Button
+            class="sapUiMediumMarginTop"
+            text="Review"
+            type="Emphasized"
+            visible="{wizard>/showReviewButton}"
+            press="onShowReview" />
+
+    </VBox>
+</WizardStep>
+<!-- ================= STEP 4 : REVIEW ================= -->
+
+<WizardStep
+    id="stepReview"
+    title="Review">
+
+    <VBox
+        width="100%"
+        height="80vh"
+        class="sapUiSmallMargin">
+
+        <!-- Scrollable content -->
+        <ScrollContainer
+            height="100%"
+            vertical="true"
+            horizontal="false">
+
+            <Panel
+                headerText="Review Summary"
+                expandable="true"
+                expanded="true"
+                width="100%">
+
+                <!-- ================= CUSTOMER ================= -->
+                <Title
+                    text="1. Customer Information"
+                    level="H4"
+                    class="sapUiSmallMarginTop" />
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Customer ID:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/selectedCustomerId}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Customer Name:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/selectedCustomerName}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Email:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/selectedCustomerEmail}" />
+                    </VBox>
+                </HBox>
+
+                <!-- ================= ORDER ================= -->
+                <Title
+                    text="2. Order Information"
+                    level="H4"
+                    class="sapUiSmallMarginTop" />
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Order ID:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/order/orderId}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Order Date:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/order/orderDate}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Order Amount:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/order/orderAmount}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Status:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/order/status}" />
+                    </VBox>
+                </HBox>
+
+                <!-- ================= PAYMENT ================= -->
+                <Title
+                    text="3. Payment Information"
+                    level="H4"
+                    class="sapUiSmallMarginTop" />
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Payment ID:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/payment/paymentId}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Payment Date:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/payment/paymentDate}" />
+                    </VBox>
+                </HBox>
+
+                <HBox class="sapUiSmallMarginBottom">
+                    <VBox width="30%">
+                        <Text text="Amount:" />
+                    </VBox>
+                    <VBox width="70%">
+                        <Text text="{wizard>/payment/amount}" />
+                    </VBox>
+                </HBox>
+
+            </Panel>
+        </ScrollContainer>
+
+        <!-- ================= FOOTER ================= -->
+        <Toolbar class="sapUiSmallMarginTop">
+            <ToolbarSpacer />
+            <Button
+                text="Submit"
+                type="Emphasized"
+                press="onSubmitWizard" />
+            <Button
+                text="Cancel"
+                press="onCancelWizard" />
+        </Toolbar>
+
+    </VBox>
+</WizardStep>
+
+
+
+
+</Wizard>
+
+
+    
+</mvc:View>
