@@ -1,0 +1,7 @@
+COLUMN TABLE db_Payment (
+  paymentId NVARCHAR(5000) NOT NULL,
+  orderId NVARCHAR(5000) NOT NULL,
+  paymentDate SECONDDATE,
+  amount INTEGER,
+  PRIMARY KEY(paymentId, orderId)
+)

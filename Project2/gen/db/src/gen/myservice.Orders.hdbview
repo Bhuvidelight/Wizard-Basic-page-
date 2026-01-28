@@ -1,0 +1,7 @@
+VIEW myservice_Orders AS SELECT
+  Orders_0.customerId,
+  Orders_0.orderId,
+  Orders_0.orderDate,
+  Orders_0.orderAmount,
+  Orders_0.status
+FROM db_Orders AS Orders_0

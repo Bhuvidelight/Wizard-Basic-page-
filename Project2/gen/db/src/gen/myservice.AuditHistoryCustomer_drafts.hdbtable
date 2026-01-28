@@ -1,0 +1,17 @@
+COLUMN TABLE myservice_AuditHistoryCustomer_drafts (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP NULL,
+  createdBy NVARCHAR(255) NULL,
+  modifiedAt TIMESTAMP NULL,
+  modifiedBy NVARCHAR(255) NULL,
+  customerId NVARCHAR(5000) NOT NULL,
+  customerName NVARCHAR(5000) NULL,
+  email NVARCHAR(5000) NULL,
+  phoneNumber NVARCHAR(5000) NULL,
+  address NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(ID, customerId)
+)

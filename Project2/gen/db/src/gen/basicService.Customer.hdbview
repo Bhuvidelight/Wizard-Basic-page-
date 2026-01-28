@@ -1,0 +1,7 @@
+VIEW basicService_Customer AS SELECT
+  Customer_0.customerId,
+  Customer_0.customerName,
+  Customer_0.email,
+  Customer_0.phoneNumber,
+  Customer_0.address
+FROM db_Customer AS Customer_0

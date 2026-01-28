@@ -1,0 +1,6 @@
+VIEW basicService_Payment AS SELECT
+  Payment_0.paymentId,
+  Payment_0.orderId,
+  Payment_0.paymentDate,
+  Payment_0.amount
+FROM db_Payment AS Payment_0

@@ -1,0 +1,12 @@
+COLUMN TABLE myservice_Orders_drafts (
+  customerId NVARCHAR(5000) NOT NULL,
+  orderId NVARCHAR(5000) NOT NULL,
+  orderDate SECONDDATE NULL,
+  orderAmount INTEGER NULL,
+  status NVARCHAR(5000) NULL DEFAULT 'Pending',
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(customerId, orderId)
+)

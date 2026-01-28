@@ -1,0 +1,8 @@
+COLUMN TABLE db_Orders (
+  customerId NVARCHAR(5000) NOT NULL,
+  orderId NVARCHAR(5000) NOT NULL,
+  orderDate SECONDDATE,
+  orderAmount INTEGER,
+  status NVARCHAR(5000) DEFAULT 'Pending',
+  PRIMARY KEY(customerId, orderId)
+)

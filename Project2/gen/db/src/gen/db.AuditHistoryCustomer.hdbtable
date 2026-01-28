@@ -1,0 +1,13 @@
+COLUMN TABLE db_AuditHistoryCustomer (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  customerId NVARCHAR(5000) NOT NULL,
+  customerName NVARCHAR(5000),
+  email NVARCHAR(5000),
+  phoneNumber NVARCHAR(5000),
+  address NVARCHAR(5000),
+  PRIMARY KEY(ID, customerId)
+)

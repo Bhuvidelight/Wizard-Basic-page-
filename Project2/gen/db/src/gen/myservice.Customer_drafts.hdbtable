@@ -1,0 +1,12 @@
+COLUMN TABLE myservice_Customer_drafts (
+  customerId NVARCHAR(5000) NOT NULL,
+  customerName NVARCHAR(5000) NULL,
+  email NVARCHAR(5000) NULL,
+  phoneNumber NVARCHAR(5000) NULL,
+  address NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(customerId)
+)

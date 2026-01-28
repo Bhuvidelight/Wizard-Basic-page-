@@ -1,0 +1,11 @@
+COLUMN TABLE myservice_Payment_drafts (
+  paymentId NVARCHAR(5000) NOT NULL,
+  orderId NVARCHAR(5000) NOT NULL,
+  paymentDate SECONDDATE NULL,
+  amount INTEGER NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(paymentId, orderId)
+)

@@ -1,0 +1,12 @@
+VIEW myservice_AuditHistoryCustomer AS SELECT
+  AuditHistoryCustomer_0.ID,
+  AuditHistoryCustomer_0.createdAt,
+  AuditHistoryCustomer_0.createdBy,
+  AuditHistoryCustomer_0.modifiedAt,
+  AuditHistoryCustomer_0.modifiedBy,
+  AuditHistoryCustomer_0.customerId,
+  AuditHistoryCustomer_0.customerName,
+  AuditHistoryCustomer_0.email,
+  AuditHistoryCustomer_0.phoneNumber,
+  AuditHistoryCustomer_0.address
+FROM db_AuditHistoryCustomer AS AuditHistoryCustomer_0
